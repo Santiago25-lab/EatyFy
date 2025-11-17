@@ -42,7 +42,10 @@ public class AuthController {
             return ResponseEntity.badRequest().body("Email already exists");
         }
 
-        user.setRole("USER"); // Default role
+        // Set role based on request, default to USER
+        if (user.getRole() == null || user.getRole().isEmpty()) {
+            user.setRole("USER");
+        }
         User savedUser = userService.saveUser(user);
 
         // TODO: Send confirmation email (EmailService to be implemented)

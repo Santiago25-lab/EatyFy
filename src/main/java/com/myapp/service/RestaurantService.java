@@ -36,4 +36,11 @@ public class RestaurantService {
     public void deleteRestaurant(Long id) {
         restaurantRepository.deleteById(id);
     }
+
+    // Get restaurants by owner
+    public List<Restaurant> getRestaurantsByOwner(Long ownerId) {
+        return restaurantRepository.findAll().stream()
+                .filter(r -> r.getOwner() != null && r.getOwner().getId().equals(ownerId))
+                .toList();
+    }
 }
