@@ -22,7 +22,7 @@ public class Application {
 	@Bean
 	public CommandLineRunner initDatabase(RestaurantService restaurantService, MenuItemService menuItemService) {
 		return args -> {
-			if (restaurantService.getRestaurants().size() < 6) {
+			if (restaurantService.getRestaurants().isEmpty()) {
 				// Add sample restaurants
 				Restaurant r1 = new Restaurant();
 				r1.setName("La Creperia");
@@ -108,63 +108,6 @@ public class Application {
 				m6.setRestaurant(r3);
 				menuItemService.saveMenuItem(m6);
 
-				// Add more sample restaurants
-				Restaurant r4 = new Restaurant();
-				r4.setName("Café Paradiso");
-				r4.setAddress("Cartagena, Colombia");
-				r4.setCuisineType("Café");
-				r4.setAveragePricePerPerson(25000.0);
-				r4.setPhone("+57 5 1234567");
-				r4.setWebsite("https://cafeparadiso.com");
-				r4.setLatitude(10.3997);
-				r4.setLongitude(-75.5144);
-				restaurantService.saveRestaurant(r4);
-
-				MenuItem m7 = new MenuItem();
-				m7.setName("Café Latte");
-				m7.setDescription("Café con leche vaporizada");
-				m7.setPrice(12000.0);
-				m7.setCategory("Bebida");
-				m7.setRestaurant(r4);
-				menuItemService.saveMenuItem(m7);
-
-				Restaurant r5 = new Restaurant();
-				r5.setName("Pizzeria Roma");
-				r5.setAddress("Barranquilla, Colombia");
-				r5.setCuisineType("Italiana");
-				r5.setAveragePricePerPerson(40000.0);
-				r5.setPhone("+57 5 7654321");
-				r5.setWebsite("https://pizzeriaroma.com");
-				r5.setLatitude(10.9639);
-				r5.setLongitude(-74.7964);
-				restaurantService.saveRestaurant(r5);
-
-				MenuItem m8 = new MenuItem();
-				m8.setName("Pizza Margherita");
-				m8.setDescription("Pizza clásica con tomate, mozzarella y albahaca");
-				m8.setPrice(35000.0);
-				m8.setCategory("Plato principal");
-				m8.setRestaurant(r5);
-				menuItemService.saveMenuItem(m8);
-
-				Restaurant r6 = new Restaurant();
-				r6.setName("El Asador");
-				r6.setAddress("Santa Marta, Colombia");
-				r6.setCuisineType("Carnes");
-				r6.setAveragePricePerPerson(60000.0);
-				r6.setPhone("+57 5 9876543");
-				r6.setWebsite("https://elasador.com");
-				r6.setLatitude(11.2408);
-				r6.setLongitude(-74.1990);
-				restaurantService.saveRestaurant(r6);
-
-				MenuItem m9 = new MenuItem();
-				m9.setName("Churrasco Argentino");
-				m9.setDescription("Corte de carne premium a la parrilla");
-				m9.setPrice(55000.0);
-				m9.setCategory("Plato principal");
-				m9.setRestaurant(r6);
-				menuItemService.saveMenuItem(m9);
 
 				System.out.println("Sample restaurants and menu items added to database");
 			}
